@@ -7,6 +7,7 @@ export const site = {
   description:
     "Engineering curiosity meets software development. Explore Aticha's projects in backend development, databases, APIs, and connected devices.",
   email: "aticha0991862895@gmail.com",
+  phone: "094-912-7054",
   // Set after choosing the new deployment. Do not canonicalize a preview to the old site.
   url:
     process.env.NEXT_PUBLIC_SITE_URL ||

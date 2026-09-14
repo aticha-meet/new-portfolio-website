@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail, FileText } from "lucide-react";
+import { ArrowUpRight, Mail, FileText, PhoneCall } from "lucide-react";
 import { Github, Linkedin } from "./BrandIcons";
 import { site } from "@/config/site";
 import { Container } from "./Container";
@@ -32,6 +32,15 @@ export function Contact() {
                 <Mail size={18} />
                 <span>{site.email}</span>
                 <ArrowUpRight size={17} />
+              </a>
+              <a
+                className="contact-phone"
+                href={`tel:${site.phone.replace(/[^\d+]/g, "").replace(/^0/, "+66")}`}
+                aria-label={`Call ${site.phone}`}
+              >
+                <PhoneCall size={18} aria-hidden="true" />
+                <span>{site.phone}</span>
+                <ArrowUpRight size={17} aria-hidden="true" />
               </a>
               <div className="contact-socials">
                 <a

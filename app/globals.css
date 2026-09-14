@@ -1031,7 +1031,8 @@ svg {
   max-width: 315px;
   line-height: 1.9;
 }
-.contact-email {
+.contact-email,
+.contact-phone {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1980,4 +1981,14 @@ svg {
 }
 .project-fullsize {
   margin-bottom: 18px;
+}
+
+.contact-phone {
+  margin-top: 6px;
+  min-height: 44px;
+  width: fit-content;
+}
+.contact-phone:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
