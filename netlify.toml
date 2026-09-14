@@ -1,0 +1,10 @@
+[build]
+  command = "pnpm build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# Netlify automatically applies its Next.js adapter for SSR, API routes and images.
+# Set NEXT_PUBLIC_SITE_URL in the Netlify UI after choosing the deployment URL.
+# RESEND_API_KEY and CONTACT_FROM_EMAIL are optional; without them the form prepares an email draft.
