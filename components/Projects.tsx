@@ -25,12 +25,12 @@ import {
 } from "@/lib/data";
 import { images, getImageOptions, isDetailImage } from "@/config/images";
 import { site } from "@/config/site";
+import { projectDisplay } from "@/config/projects";
 import { Container } from "./Container";
 import { GlassBox } from "./GlassBox";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 
-const PROJECT_PREVIEW_LIMIT = 5;
 const categories = ["All projects", ...projectCategories] as const;
 const skillIcons = {
   database: Database,
@@ -138,11 +138,13 @@ export function Projects() {
   const [filter, setFilter] = useState<ProjectCategory | "All projects">(
     "All projects",
   );
-  const visible = projects
-    .filter(
-      (project) => filter === "All projects" || project.category === filter,
-    )
-    .slice(0, PROJECT_PREVIEW_LIMIT);
+  const filteredProjects = projects.filter(
+    (project) => filter === "All projects" || project.category === filter,
+  );
+  const shownCount = Math.min(
+    projectDisplay.limit ?? filteredProjects.length,
+    filteredProjects.length,
+  );
 
   return (
     <section id="projects" className="section projects-section">
@@ -196,19 +198,24 @@ export function Projects() {
                 onClick={() => setFilter(category)}
               >
                 {category}
+                {category === "All projects" && <span>{projects.length}</span>}
               </button>
             ))}
           </div>
           <p aria-live="polite" className="project-count">
-            {visible.length} projects
+            {shownCount < filteredProjects.length
+              ? `Showing ${shownCount} of ${filteredProjects.length} projects`
+              : `${shownCount} projects`}
           </p>
         </div>
         <div className="project-grid">
-          {visible.map((project) => (
-            <Reveal key={project.number}>
-              <ProjectCard project={project} />
-            </Reveal>
-          ))}
+          {filteredProjects
+            .slice(0, projectDisplay.limit ?? undefined)
+            .map((project) => (
+              <Reveal key={project.number}>
+                <ProjectCard project={project} />
+              </Reveal>
+            ))}
         </div>
         <div className="projects-beyond">
           <Link href="/beyond" className="button button-primary">

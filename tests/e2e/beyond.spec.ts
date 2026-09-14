@@ -1,3 +1,8 @@
+import { projectDisplay } from "../../config/projects";
+
+const displayedProjects = (total: number) =>
+  Math.min(projectDisplay.limit ?? total, total);
+
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
@@ -31,7 +36,9 @@ test("appendix shows activities, opens photo galleries and links back to project
     .getByRole("link", { name: "Projects", exact: true })
     .click();
   await expect(page).toHaveURL(/\/#projects$/);
-  await expect(page.locator(".project-card")).toHaveCount(5);
+  await expect(page.locator(".project-card")).toHaveCount(
+    displayedProjects(12),
+  );
 });
 
 test("appendix supports mobile navigation, responsive photos and accessibility", async ({

@@ -1,3 +1,8 @@
+import { projectDisplay } from "../../config/projects";
+
+const displayedProjects = (total: number) =>
+  Math.min(projectDisplay.limit ?? total, total);
+
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
@@ -84,27 +89,27 @@ test("mobile menu opens, navigates, and restores focus on Escape", async ({
 test("filters show the right projects and can reset", async ({ page }) => {
   await page.goto("/");
   const cards = page.locator(".project-card");
-  await expect(cards).toHaveCount(5);
+  await expect(cards).toHaveCount(displayedProjects(12));
   await page.getByRole("button", { name: "Backend", exact: true }).click();
-  await expect(cards).toHaveCount(2);
+  await expect(cards).toHaveCount(displayedProjects(2));
   await expect(
     page.getByRole("heading", { name: "From database to API" }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Mobile", exact: true }).click();
-  await expect(cards).toHaveCount(1);
+  await expect(cards).toHaveCount(displayedProjects(1));
   await expect(
     page.getByRole("heading", { name: "Currency, converted." }),
   ).toBeVisible();
   await page.getByRole("button", { name: /All projects/ }).click();
-  await expect(cards).toHaveCount(5);
+  await expect(cards).toHaveCount(displayedProjects(12));
   await page.getByRole("button", { name: "Full-stack", exact: true }).click();
-  await expect(cards).toHaveCount(3);
+  await expect(cards).toHaveCount(displayedProjects(3));
   await expect(
     cards.getByRole("heading", { name: "Adapter Website CMS", exact: true }),
   ).toBeVisible();
   await expect(cards.locator('a[href^="https://github.com/"]')).toHaveCount(0);
   await page.getByRole("button", { name: "Automation", exact: true }).click();
-  await expect(cards).toHaveCount(1);
+  await expect(cards).toHaveCount(displayedProjects(1));
   await expect(
     cards.getByRole("heading", {
       name: "Google Classroom Automation",
@@ -112,10 +117,10 @@ test("filters show the right projects and can reset", async ({ page }) => {
     }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Robotics", exact: true }).click();
-  await expect(cards).toHaveCount(3);
-  await expect(cards.locator("img")).toHaveCount(3);
+  await expect(cards).toHaveCount(displayedProjects(3));
+  await expect(cards.locator("img")).toHaveCount(displayedProjects(3));
   await page.getByRole("button", { name: /All projects/ }).click();
-  await expect(cards).toHaveCount(5);
+  await expect(cards).toHaveCount(displayedProjects(12));
   await page
     .locator("#projects")
     .getByRole("link", { name: "Explore activities on Beyond" })
@@ -207,7 +212,9 @@ test("portfolio remains readable without JavaScript and with reduced motion", as
   const page = await context.newPage();
   await page.goto("http://localhost:3010");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  await expect(page.locator(".project-card")).toHaveCount(5);
+  await expect(page.locator(".project-card")).toHaveCount(
+    displayedProjects(12),
+  );
   await expect(page.locator(".contact-email")).toBeVisible();
   expect(
     await page.evaluate(
