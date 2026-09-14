@@ -55,7 +55,7 @@ export function About() {
               <div className="personal-note">
                 <HeartHandshake size={19} />
                 <span>
-                  Outside of code? Teaching, team sports, and learning from
+                  Outside of code: Teaching, team sports, and learning from
                   people.
                 </span>
               </div>
