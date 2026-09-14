@@ -166,23 +166,41 @@ export const experiences: WorkExperience[] = [
 
 export const skillGroups = [
   {
-    name: "Backend & data",
-    icon: "database",
-    items: ["Python", "Golang", "MySQL", "REST APIs"],
+    name: "CI/CD",
+    icon: "workflow",
+    items: ["GitHub Actions", "GitHub Workflows"],
   },
   {
-    name: "Web & mobile",
-    icon: "code",
-    items: ["Flutter", "Dart", "Bootstrap"],
+    name: "Services",
+    icon: "services",
+    items: ["Docker", "Docker Compose", "Cloudflare"],
   },
   {
-    name: "Hardware & tools",
-    icon: "cpu",
-    items: ["C++", "Arduino", "NodeMCU", "MySQL Workbench"],
+    name: "Backend",
+    icon: "server",
+    items: ["Express.js", "FastAPI", "Python", "Golang", "REST APIs"],
   },
+  {
+    name: "Frontend",
+    icon: "frontend",
+    items: ["Next.js", "React", "Bootstrap"],
+  },
+  { name: "Deployment", icon: "cloud", items: ["Netlify", "Vercel"] },
+  { name: "Object-oriented programming", icon: "code", items: ["Java"] },
+  { name: "Mobile", icon: "mobile", items: ["Dart", "Flutter"] },
+  { name: "Data", icon: "database", items: ["MySQL", "MySQL Workbench"] },
+  { name: "Hardware & IoT", icon: "cpu", items: ["C++", "Arduino", "NodeMCU"] },
 ] as const;
 
-export type ProjectCategory = "Backend" | "IoT" | "Mobile";
+export const projectCategories = [
+  "Full-stack",
+  "Automation",
+  "Robotics",
+  "Backend",
+  "IoT",
+  "Mobile",
+] as const;
+export type ProjectCategory = (typeof projectCategories)[number];
 export type Project = {
   number: string;
   title: string;
@@ -190,11 +208,12 @@ export type Project = {
   description: string;
   tags: string[];
   image: ImageKey;
-  href: string;
+  href: string | null;
+  status?: string;
   role: string;
 };
 
-export const projects: Project[] = [
+const legacyProjects: Project[] = [
   {
     number: "01",
     title: "Drowsiness detection",
@@ -251,3 +270,51 @@ export const projects: Project[] = [
     role: "Database connectivity & programming",
   },
 ];
+
+/** Reuse experience content and image keys so both sections stay in sync. */
+const projectFromExperience: Partial<
+  Record<ImageKey | "adapterCms", { title: string; category: ProjectCategory }>
+> = {
+  adapterCms: { title: "Adapter Website CMS", category: "Full-stack" },
+  eduFlow: { title: "Edu Flow", category: "Full-stack" },
+  groceryStore: { title: "Grocery Store App", category: "Full-stack" },
+  classroomAutomation: {
+    title: "Google Classroom Automation",
+    category: "Automation",
+  },
+  robotics12: {
+    title: "Competition Robot · Teaching Academy 12",
+    category: "Robotics",
+  },
+  gnssRobotic: { title: "Low-cost GNSS Robot", category: "Robotics" },
+  robotics11: { title: "Line-tracking & PID Robot", category: "Robotics" },
+};
+const experienceProjects: Omit<Project, "number">[] = experiences.flatMap(
+  (experience) => {
+    const key = experience.featured ? "adapterCms" : experience.image;
+    const selection = key ? projectFromExperience[key] : undefined;
+    if (!key || !selection) return [];
+    return [
+      {
+        title: selection.title,
+        category: selection.category,
+        description: experience.description ?? "",
+        tags: experience.technologies ?? [],
+        image: key,
+        href: experience.featured
+          ? github.experiences.adapterCms
+          : (experience.repository ?? null),
+        role: experience.role ?? "Full-stack development & CI/CD",
+        status: experience.featured ? "Company project" : experience.tag,
+      },
+    ];
+  },
+);
+
+export const projects: Project[] = [
+  ...experienceProjects,
+  ...legacyProjects,
+].map((project, index) => ({
+  ...project,
+  number: String(index + 1).padStart(2, "0"),
+}));

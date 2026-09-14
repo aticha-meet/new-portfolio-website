@@ -1,3 +1,4 @@
+import { experiences } from "@/lib/data";
 import type { ImageKey } from "@/config/images";
 
 export type Activity = {
@@ -58,7 +59,7 @@ export const teachingActivities: Activity[] = [
   },
 ];
 
-export const communityActivities: Activity[] = [
+const historicalCommunityActivities: Activity[] = [
   {
     id: "research-to-market",
     date: "2024",
@@ -108,4 +109,37 @@ export const communityActivities: Activity[] = [
     caption:
       "With fellow scouts at the World Scout Jamboree in the United States.",
   },
+];
+
+const technicalActivityImages = new Set<ImageKey>([
+  "robotics12",
+  "asefaDemo",
+  "gnssRobotic",
+  "robotics11",
+  "gosoftWorkshop",
+]);
+
+export const technicalActivities: Activity[] = experiences.flatMap(
+  (experience) => {
+    if (!experience.image || !technicalActivityImages.has(experience.image))
+      return [];
+    return [
+      {
+        id: "activity-" + experience.image,
+        date: experience.date ?? "",
+        title: experience.title,
+        organization: experience.organization,
+        role: experience.role ?? "",
+        description: experience.description ?? "",
+        highlights: [experience.tag, ...(experience.technologies ?? [])],
+        image: experience.image,
+        caption: experience.organization,
+      },
+    ];
+  },
+);
+
+export const communityActivities: Activity[] = [
+  ...technicalActivities,
+  ...historicalCommunityActivities,
 ];

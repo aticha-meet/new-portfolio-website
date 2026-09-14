@@ -15,9 +15,14 @@ export function ActivityCard({ activity }: { activity: Activity }) {
           src={cover.src}
           alt={cover.alt}
           sizes="(max-width: 767px) 90vw, (max-width: 1200px) 45vw, 560px"
-          placeholder="blur"
+          placeholder={cover.src.blurDataURL ? "blur" : "empty"}
         />
-        <figcaption>{activity.caption}</figcaption>
+        <figcaption>
+          {"placeholder" in cover && cover.placeholder
+            ? "Concept illustration · "
+            : ""}
+          {activity.caption}
+        </figcaption>
       </figure>
       <div className="activity-content">
         <p className="activity-date">{activity.date}</p>

@@ -125,3 +125,11 @@ pnpm --package=netlify-cli dlx netlify login
 3. ลบ `placeholder: true` หรือเปลี่ยนเป็น `false` เพื่อเปลี่ยนป้ายเป็น A CLOSER LOOK รูปใหม่จะแสดงแทนโดยไม่ต้องแก้ component
 
 ลิงก์ repository ของแอปใหม่เตรียมไว้ใน `config/github.ts` ใต้ `experiences` ทั้งสามค่าเป็น `null` จนเจ้าของเพิ่ม URL สาธารณะ หากไม่มี URL จะไม่แสดงปุ่ม
+
+## Projects และ Activities จากประสบการณ์
+
+Projects รวม 12 ผลงาน: เพิ่ม CMS ของ Adapter, แอปส่วนตัว 3 ตัว และงานหุ่นยนต์ 3 ตัวจาก `experiences` โดยใช้ `projectFromExperience` ใน `lib/data.ts` เลือกรายการและตั้งชื่อ/หมวด ภาพและรายละเอียดใช้ข้อมูลร่วมกับ timeline ส่วนรายการที่ยังไม่มี URL จะเป็นการ์ดข้อมูลโดยไม่มีลิงก์ GitHub
+
+Activities/Beyond เพิ่มการแข่งขันหุ่นยนต์, ASEFA และ Gosoft รวม 5 กิจกรรมผ่าน `technicalActivities` ใน `lib/activities.ts` โดยดึงเนื้อหาจาก Experience เช่นกัน รูป SVG ใช้เป็นภาพประกอบชั่วคราวพร้อมป้ายกำกับ
+
+Tech Stack แก้ที่ `skillGroups` ใน `lib/data.ts`: CI/CD, Services, Backend, Frontend, Deployment, Object-oriented programming, Mobile, Data และ Hardware & IoT

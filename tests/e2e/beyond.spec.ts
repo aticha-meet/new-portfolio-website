@@ -15,7 +15,7 @@ test("appendix shows activities, opens photo galleries and links back to project
       .getByRole("link", { name: "Beyond", exact: true }),
   ).toHaveAttribute("aria-current", "page");
   await expect(page.locator("#teaching .activity-card")).toHaveCount(2);
-  await expect(page.locator("#community .activity-card")).toHaveCount(4);
+  await expect(page.locator("#community .activity-card")).toHaveCount(9);
   const gallery = page.locator("#teaching-assistant details");
   await gallery.locator("summary").focus();
   await page.keyboard.press("Enter");
@@ -31,7 +31,7 @@ test("appendix shows activities, opens photo galleries and links back to project
     .getByRole("link", { name: "Projects", exact: true })
     .click();
   await expect(page).toHaveURL(/\/#projects$/);
-  await expect(page.locator(".project-card")).toHaveCount(5);
+  await expect(page.locator(".project-card")).toHaveCount(12);
 });
 
 test("appendix supports mobile navigation, responsive photos and accessibility", async ({

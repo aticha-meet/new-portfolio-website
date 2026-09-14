@@ -29,6 +29,11 @@ type PortfolioImage = {
 
 /** Import all portfolio photos here. Components reference a key, never a file path. */
 export const images = {
+  adapterCms: {
+    src: eduFlowConcept,
+    alt: "Concept illustration of a website content management dashboard",
+    placeholder: true,
+  },
   eduFlow: {
     src: eduFlowConcept,
     alt: "Concept illustration of an exam management dashboard",

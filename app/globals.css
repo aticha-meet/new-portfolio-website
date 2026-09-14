@@ -1937,3 +1937,16 @@ svg {
     flex-basis: 100%;
   }
 }
+
+.project-status {
+  align-self: flex-start;
+  margin-top: 12px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: #e7ede3;
+  color: var(--accent);
+  font-size: 10px;
+}
+.project-count {
+  white-space: nowrap;
+}
