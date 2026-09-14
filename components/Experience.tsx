@@ -1,5 +1,7 @@
 import Image from "next/image";
-import { ArrowUpRight, Award } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, Award, Code2, ImageIcon } from "lucide-react";
+import { github } from "@/config/github";
 import { experiences } from "@/lib/data";
 import { images } from "@/config/images";
 import { Container } from "./Container";
@@ -14,73 +16,176 @@ export function Experience() {
         <Reveal>
           <SectionHeading
             number="02"
-            label="EXPERIENCE & LITTLE MILESTONES"
-            title="More than lines of code."
-            description="Teaching, research, and teamwork. Experiences that shape how I think and build."
+            label="WORK EXPERIENCE & MILESTONES"
+            title="Experience that shapes how I work."
+            description="My internship at Adapter, apps built for everyday needs, and hands-on work in robotics and technical teamwork."
           />
         </Reveal>
-        <div className="experience-grid">
-          <div className="timeline">
-            {experiences.map((item) => (
-              <Reveal key={item.title}>
-                <article className="timeline-item">
-                  <span className="timeline-dot" aria-hidden="true" />
-                  <div className="timeline-date">
-                    {item.date}
-                    <span>{item.category}</span>
-                  </div>
-                  <GlassBox className="experience-card">
+        {experiences
+          .filter((item) => item.featured)
+          .map((item) => (
+            <Reveal key={item.title}>
+              <article
+                className="featured-experience glass-box"
+                aria-label={item.title}
+              >
+                <div className="featured-experience-heading">
+                  <span className="featured-experience-logo">
+                    <Image
+                      src={images.adapterLogo.src}
+                      alt={images.adapterLogo.alt}
+                      width={146}
+                      height={46}
+                      sizes="146px"
+                    />
+                  </span>
+                  <div>
+                    <p className="featured-experience-label">
+                      FEATURED WORK EXPERIENCE
+                    </p>
                     <h3>{item.title}</h3>
-                    <p className="organization">{item.organization}</p>
-                    <p>{item.description}</p>
-                    <span className="achievement">
-                      <Award size={14} />
-                      {item.tag}
-                    </span>
-                  </GlassBox>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-          <div className="experience-aside">
-            <Reveal>
-              <figure className="moment-card">
-                <Image
-                  src={images.teaching.src}
-                  alt={images.teaching.alt}
-                  sizes="(max-width: 767px) 90vw, 420px"
-                  placeholder="blur"
-                />
-                <figcaption>
-                  <span className="small-label">A MOMENT TO REMEMBER</span>
-                  <strong>
-                    Sharing knowledge.
-                    <br />
-                    Finding confidence.
-                  </strong>
-                  <span>Thailand Teaching Academy Award · 2024</span>
-                </figcaption>
-              </figure>
-            </Reveal>
-            <Reveal>
-              <GlassBox className="beyond-card">
-                <Image
-                  src={images.games.src}
-                  alt={images.games.alt}
-                  width={96}
-                  height={96}
-                  sizes="96px"
-                />
-                <div>
-                  <span className="small-label">AWAY FROM THE KEYBOARD</span>
-                  <h3>Part of a team.</h3>
-                  <p>Represented KMUTT at the 50th University Games.</p>
+                    {item.date && (
+                      <p className="featured-experience-date">{item.date}</p>
+                    )}
+                  </div>
+                  <span className="featured-experience-tag">{item.tag}</span>
                 </div>
-                <ArrowUpRight size={20} aria-hidden="true" />
-              </GlassBox>
+                {item.projectTitle && (
+                  <h4 className="featured-experience-project">
+                    {item.projectTitle}
+                  </h4>
+                )}
+                {item.description && (
+                  <p className="featured-experience-description">
+                    {item.description}
+                  </p>
+                )}
+                {item.highlights && (
+                  <ul className="featured-experience-highlights">
+                    {item.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
+                )}
+                {item.technologies && (
+                  <ul
+                    className="featured-experience-technologies"
+                    aria-label="Technologies used at Adapter"
+                  >
+                    {item.technologies.map((technology) => (
+                      <li key={technology}>{technology}</li>
+                    ))}
+                  </ul>
+                )}
+                {github.experiences.adapterCms && (
+                  <a
+                    className="featured-experience-repository"
+                    href={github.experiences.adapterCms}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    View repository{" "}
+                    <ArrowUpRight size={16} aria-hidden="true" />
+                  </a>
+                )}
+              </article>
             </Reveal>
-          </div>
+          ))}
+        <div className="experience-story-timeline">
+          {experiences
+            .filter((item) => !item.featured)
+            .map((item) => {
+              const photo = item.image ? images[item.image] : null;
+              const isPlaceholder =
+                !photo || ("placeholder" in photo && photo.placeholder);
+              return (
+                <Reveal key={item.organization}>
+                  <article className="experience-story-row">
+                    <span className="timeline-dot" aria-hidden="true" />
+                    <div className="experience-story-copy">
+                      <div className="timeline-date">
+                        {item.date}
+                        <span>{item.category}</span>
+                      </div>
+                      <GlassBox className="experience-card technical-experience-card">
+                        <p className="experience-role">{item.role}</p>
+                        <h3>{item.title}</h3>
+                        <p className="organization">{item.organization}</p>
+                        <p>{item.description}</p>
+                        <span className="achievement">
+                          {item.award ? (
+                            <Award size={14} aria-hidden="true" />
+                          ) : (
+                            <Code2 size={14} aria-hidden="true" />
+                          )}
+                          {item.tag}
+                        </span>
+                        {item.technologies && (
+                          <ul
+                            className="experience-technologies"
+                            aria-label={"Skills used at " + item.organization}
+                          >
+                            {item.technologies.map((technology) => (
+                              <li key={technology}>{technology}</li>
+                            ))}
+                          </ul>
+                        )}
+                        {item.repository && (
+                          <a
+                            href={item.repository}
+                            className="text-link experience-repository"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            View repository{" "}
+                            <ArrowUpRight size={16} aria-hidden="true" />
+                          </a>
+                        )}
+                      </GlassBox>
+                    </div>
+                    <figure className="experience-story-media glass-box">
+                      {photo ? (
+                        <Image
+                          src={photo.src}
+                          alt={photo.alt}
+                          sizes="(max-width: 767px) 85vw, (max-width: 1100px) 40vw, 480px"
+                        />
+                      ) : (
+                        <div
+                          className="experience-photo-empty"
+                          aria-hidden="true"
+                        >
+                          <ImageIcon size={48} strokeWidth={1} />
+                        </div>
+                      )}
+                      <figcaption>
+                        <span className="small-label">
+                          {isPlaceholder
+                            ? "CONCEPT ILLUSTRATION"
+                            : "A CLOSER LOOK"}
+                        </span>
+                        <strong>{item.organization}</strong>
+                        {isPlaceholder && (
+                          <span className="experience-media-note">
+                            Illustration · project photos to follow
+                          </span>
+                        )}
+                      </figcaption>
+                    </figure>
+                  </article>
+                </Reveal>
+              );
+            })}
         </div>
+        <Link href="/beyond" className="appendix-teaser glass-box">
+          <span>
+            <span className="small-label">BEYOND THE CODE</span>
+            <strong>Teaching, activities, and the rest of the story.</strong>
+          </span>
+          <span className="text-link">
+            Explore the appendix <ArrowUpRight size={18} />
+          </span>
+        </Link>
       </Container>
     </section>
   );

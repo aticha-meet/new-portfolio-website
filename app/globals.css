@@ -1650,3 +1650,290 @@ svg {
     font-size: 9px;
   }
 }
+
+.appendix-teaser {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 25px 30px;
+  margin-top: 36px;
+  transition: background 0.2s;
+}
+.appendix-teaser strong {
+  display: block;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  margin-top: 7px;
+}
+.appendix-teaser:hover {
+  background: #fffdf6;
+}
+@media (max-width: 767px) {
+  .appendix-teaser {
+    padding: 23px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 17px;
+  }
+}
+
+.featured-experience {
+  background: linear-gradient(115deg, #1f5c4d, #244c3e);
+  color: #fffdf7;
+  border-color: #386953;
+  padding: 38px;
+  margin-bottom: 36px;
+  border-radius: 22px;
+}
+.featured-experience-heading {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.featured-experience-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: 65px;
+  flex-shrink: 0;
+  border: 1px solid #ffffff40;
+  background: #ffffff0d;
+  border-radius: 17px;
+}
+.featured-experience-label {
+  color: #d3e5d5;
+  font-size: 10px;
+  letter-spacing: 1.7px;
+  font-weight: 550;
+  margin-bottom: 11px;
+}
+.featured-experience h3 {
+  font-size: clamp(1.7rem, 3vw, 2.25rem);
+  font-weight: 550;
+  letter-spacing: -0.8px;
+}
+.featured-experience-tag {
+  margin-left: auto;
+  padding: 6px 13px;
+  border: 1px solid #ffffff50;
+  border-radius: 6px;
+  color: #fffdf7;
+  font-size: 12px;
+}
+.featured-experience-date {
+  color: #d3e5d5;
+  font-size: 13px;
+  margin-top: 12px;
+}
+.featured-experience-description,
+.featured-experience-highlights {
+  color: #e0ebdf;
+  font-size: 15px;
+  line-height: 1.85;
+  max-width: 760px;
+  margin-top: 24px;
+}
+.featured-experience-highlights {
+  list-style: disc;
+  padding-left: 20px;
+}
+@media (max-width: 767px) {
+  .featured-experience {
+    padding: 25px;
+    margin-bottom: 28px;
+  }
+  .featured-experience-heading {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .featured-experience-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+  .featured-experience-heading > div {
+    flex: 1;
+    min-width: 180px;
+  }
+  .featured-experience-label {
+    font-size: 9px;
+    letter-spacing: 1.2px;
+  }
+  .featured-experience-tag {
+    margin-left: 0;
+  }
+}
+
+.featured-experience-project {
+  margin-top: 30px;
+  padding-top: 26px;
+  border-top: 1px solid #ffffff30;
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  line-height: 1.4;
+}
+.featured-experience-project + .featured-experience-description {
+  margin-top: 14px;
+}
+.featured-experience-highlights {
+  display: grid;
+  gap: 13px;
+  max-width: 900px;
+}
+.featured-experience-highlights li {
+  padding-left: 5px;
+}
+.featured-experience-highlights li::marker {
+  color: #bfd8c7;
+}
+.featured-experience-technologies {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 24px 0 0;
+  margin: 26px 0 0;
+  border-top: 1px solid #ffffff30;
+}
+.featured-experience-technologies li {
+  color: #fffdf7;
+  background: #ffffff0d;
+  border: 1px solid #ffffff40;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 11px;
+}
+@media (max-width: 767px) {
+  .featured-experience-project {
+    font-size: 21px;
+  }
+  .featured-experience-description,
+  .featured-experience-highlights {
+    font-size: 14px;
+  }
+}
+
+/* Engineering experiences, sourced from the owner's experience.csv. */
+.featured-experience-logo {
+  display: flex;
+  align-items: center;
+  flex: 0 0 146px;
+}
+.featured-experience-logo img {
+  width: 146px;
+  height: auto;
+}
+.featured-experience-repository {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  color: #fffdf7;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.experience-story-timeline {
+  margin-left: 5px;
+  border-left: 1px solid #c8d1c4;
+  padding-left: 28px;
+}
+.experience-story-timeline > .reveal {
+  padding-bottom: 48px;
+}
+.experience-story-timeline > .reveal:last-child {
+  padding-bottom: 0;
+}
+.experience-story-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+.experience-story-row .timeline-dot {
+  left: -33px;
+}
+.experience-story-row .timeline-date {
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.experience-story-media {
+  margin: 30px 0 0;
+  overflow: hidden;
+  border-radius: 19px;
+}
+.experience-story-media > img,
+.experience-photo-empty {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: cover;
+}
+.experience-photo-empty {
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  background: #e7eddf;
+}
+.experience-story-media figcaption {
+  display: grid;
+  gap: 8px;
+  padding: 20px 24px;
+}
+.experience-story-media figcaption strong {
+  font-size: 16px;
+  font-weight: 550;
+  line-height: 1.5;
+}
+.experience-media-note {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+.experience-repository {
+  margin-top: 18px;
+}
+@media (max-width: 767px) {
+  .experience-story-timeline {
+    padding-left: 20px;
+  }
+  .experience-story-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+  .experience-story-row .timeline-dot {
+    left: -25px;
+  }
+  .experience-story-media {
+    margin-top: 0;
+  }
+}
+.technical-experience-card {
+  flex: 1;
+}
+.technical-experience-card > .experience-role {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.experience-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 6px 14px;
+  padding: 18px 0 0;
+  margin: 20px 0 0;
+  border-top: 1px solid var(--border-soft);
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+@media (max-width: 767px) {
+  .featured-experience-logo {
+    flex-basis: 100%;
+  }
+}

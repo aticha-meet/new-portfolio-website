@@ -1,3 +1,5 @@
+import { github } from "@/config/github";
+
 export const site = {
   name: "Aticha Meetunyakron",
   nickname: "Jaosou",
@@ -19,7 +21,7 @@ export const site = {
     downloadUrl: null as string | null,
   },
   social: {
-    github: "https://github.com/Jaosou",
+    github: github.profile,
     linkedin: "https://www.linkedin.com/in/aticha-meetunyakron-98b470337/",
     instagram: "https://www.instagram.com/jaosoung_.jjjj/",
     facebook: "https://web.facebook.com/profile.php?id=100010298761769",
@@ -31,4 +33,5 @@ export const navigation = [
   { href: "#experience", label: "Experience" },
   { href: "#projects", label: "Projects" },
   { href: "#contact", label: "Contact" },
+  { href: "/beyond", label: "Beyond" },
 ] as const;

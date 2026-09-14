@@ -91,3 +91,37 @@ pnpm --package=netlify-cli dlx netlify login
 - [Motion accessibility](https://motion.dev/docs/react-accessibility)
 - [Resend Send Email API](https://resend.com/docs/api-reference/emails/send-email)
 - [Next.js on Netlify](https://docs.netlify.com/build/frameworks/framework-setup-guides/nextjs/overview/)
+
+## หน้าภาคผนวก — Beyond the Code
+
+เปิด `/beyond` สำหรับงานสอน การเป็นผู้ช่วยสอน กิจกรรม การแข่งขัน กีฬา และประสบการณ์ต่างประเทศ เข้าผ่านเมนู Beyond หรือการ์ดท้ายส่วน Experience ได้
+
+- แก้/เพิ่มงานสอนที่ `teachingActivities` ใน `lib/activities.ts`
+- แก้/เพิ่มกิจกรรมอื่นที่ `communityActivities` ในไฟล์เดียวกัน
+- แต่ละรายการมีวันที่ ชื่อกิจกรรม หน่วยงาน บทบาท คำอธิบาย highlights และ image key
+- ใส่ `gallery` เพื่อเพิ่มรูปที่เปิดดูได้ผ่าน More moments; ทำงานด้วย keyboard และไม่ต้องใช้ JavaScript
+- วางไฟล์รูปใน `assets/images/activities/` แล้วเพิ่ม key และ alt ใน `config/images.ts`
+- UI ของการ์ดอยู่ใน `components/ActivityCard.tsx`; styling เฉพาะหน้าอยู่ใน `app/beyond/beyond.css`
+- ใช้ข้อมูลจาก portfolio เดิม ไม่ได้สมมติว่าเป็นงานครูประจำหรือสถานะการทำงานปัจจุบัน
+
+## Experience และ GitHub config
+
+ข้อมูลประสบการณ์ด้านเทคนิค 5 รายการใน `lib/data.ts` ปรับตาม `experience.csv` ที่เจ้าของให้ (2025–2026) โดยคงข้อมูล Internship ที่ Adapter เดิม และให้แสดงเป็นรายการเด่นอันดับแรก งานสอนและกิจกรรมเดิมอยู่ที่ `/beyond`
+
+ลิงก์ GitHub ทั้ง profile และ projects เรียกจาก `config/github.ts` จุดเดียว ส่วน `github.experiences.adapterCms` เป็น `null` จึงไม่แสดงปุ่ม repository กำหนด URL ได้เมื่อบริษัทอนุญาตให้เปิดเผยและผู้เข้าชมเข้าถึงได้แล้วเท่านั้น ไฟล์ config นี้ถูกใช้ใน client bundle ด้วย จึงไม่ควรใส่ private URL หรือ secret แม้ปุ่มจะถูกซ่อนไว้
+
+โลโก้ Adapter ใช้ `images.adapterLogo` จาก `config/images.ts` และเก็บต้นฉบับที่ `assets/images/companies/adapter/logo.png` ไม่เพิ่มข้อความอ้างว่าได้รับใบรับรอง เนื่องจากยังไม่ได้รับไฟล์จากเจ้าของ
+
+## Timeline พร้อมรูป และแอปที่ทำไว้ใช้เอง
+
+เพิ่ม Edu Flow, Grocery Store App และ Google Classroom Automation ตาม `experience3.csv` ของเจ้าของ ทั้งสามอยู่ต่อจาก Internship โดยคงข้อความ Internship เดิม รายการอื่นเรียงตาม CSV ไทม์ไลน์อยู่ซ้ายและภาพของแต่ละรายการอยู่ขวาบน desktop; บนมือถือรูปอยู่ใต้เนื้อหาของรายการนั้น
+
+ภาพปัจจุบันของ 8 รายการเป็นภาพประกอบ SVG ชั่วคราวที่สร้างสำหรับเว็บนี้ ไม่ใช่ screenshot หรือภาพหลักฐานผลงาน เก็บใน `assets/images/experience/placeholders/` และแสดงป้าย CONCEPT ILLUSTRATION
+
+เมื่อได้รูปจริง:
+
+1. วางไฟล์ใน `assets/images/experience/<ชื่อผลงาน>/` แล้ว import ใน `config/images.ts`
+2. เปลี่ยน `src` และ `alt` ของ key ที่ตรงกับรายการ เช่น `eduFlow`, `groceryStore`, `classroomAutomation`, `robotics12`, `asefaDemo`, `gnssRobotic`, `robotics11`, `gosoftWorkshop`
+3. ลบ `placeholder: true` หรือเปลี่ยนเป็น `false` เพื่อเปลี่ยนป้ายเป็น A CLOSER LOOK รูปใหม่จะแสดงแทนโดยไม่ต้องแก้ component
+
+ลิงก์ repository ของแอปใหม่เตรียมไว้ใน `config/github.ts` ใต้ `experiences` ทั้งสามค่าเป็น `null` จนเจ้าของเพิ่ม URL สาธารณะ หากไม่มี URL จะไม่แสดงปุ่ม

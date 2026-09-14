@@ -1,0 +1,209 @@
+.appendix-hero {
+  padding: 45px 0 65px;
+}
+.appendix-back {
+  margin-bottom: 52px;
+}
+.appendix-hero h1 {
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  font-weight: 550;
+  letter-spacing: -2.4px;
+  margin: 22px 0;
+}
+.appendix-hero .eyebrow > span {
+  border: 0;
+  padding: 0;
+  letter-spacing: 0.5px;
+}
+.appendix-intro {
+  max-width: 550px;
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--text-secondary);
+}
+.appendix-index {
+  padding: 27px;
+}
+.appendix-index > a {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  padding-top: 22px;
+  margin-top: 20px;
+  border-top: 1px solid var(--border-soft);
+  color: var(--accent);
+}
+.appendix-index > a > span {
+  font-size: 14px;
+  flex: 1;
+  font-weight: 500;
+}
+.appendix-index small {
+  display: block;
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 3px;
+  font-weight: 400;
+}
+.appendix-index a:hover span {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.appendix-section {
+  padding-top: 56px;
+  border-top: 1px solid var(--border-soft);
+}
+.appendix-community {
+  background: #e9ece525;
+}
+.activity-card {
+  border-radius: 21px;
+  scroll-margin-top: 115px;
+}
+.activity-cover {
+  margin: 9px 9px 0;
+}
+.activity-cover > img {
+  width: 100%;
+  aspect-ratio: 1.5;
+  height: auto;
+  object-fit: cover;
+  border-radius: 14px;
+}
+.activity-cover figcaption {
+  padding: 12px 13px 0;
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+.activity-content {
+  padding: 24px 26px 28px;
+}
+.activity-date {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  color: var(--accent);
+  margin-bottom: 13px;
+}
+.activity-content h3 {
+  font-size: 24px;
+  letter-spacing: -0.8px;
+  font-weight: 550;
+  line-height: 1.35;
+  max-width: 440px;
+}
+.activity-organization {
+  font-size: 13px;
+  color: var(--accent);
+  margin-top: 13px;
+}
+.activity-role {
+  color: var(--text-secondary);
+  font-size: 11px;
+  margin-top: 4px;
+}
+.activity-description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  margin-top: 22px;
+}
+.activity-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 23px 0 0;
+}
+.activity-highlights > li {
+  border: 1px solid #d7dfd1;
+  color: var(--accent);
+  padding: 4px 9px;
+  border-radius: 6px;
+  font-size: 10px;
+}
+.activity-gallery {
+  margin-top: 25px;
+  border-top: 1px solid var(--border-soft);
+}
+.activity-gallery summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 18px;
+  font-size: 12px;
+  color: var(--accent);
+  list-style: none;
+  min-height: 44px;
+}
+.activity-gallery summary::-webkit-details-marker {
+  display: none;
+}
+.activity-gallery summary > span {
+  color: var(--text-secondary);
+  font-size: 10px;
+  margin-left: auto;
+}
+.activity-gallery[open] summary {
+  padding-bottom: 18px;
+}
+.activity-gallery[open] summary > svg {
+  transform: rotate(180deg);
+}
+.activity-gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.activity-gallery figcaption {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 9px;
+}
+.appendix-closing {
+  margin: 55px 0 65px;
+  padding: 32px;
+}
+.appendix-closing h2 {
+  font-size: 26px;
+  font-weight: 550;
+  letter-spacing: -0.6px;
+  margin-top: 12px;
+}
+@media (max-width: 767px) {
+  .appendix-hero {
+    padding: 30px 0 40px;
+  }
+  .appendix-back {
+    margin-bottom: 34px;
+  }
+  .appendix-hero h1 {
+    font-size: 44px;
+    letter-spacing: -1.8px;
+  }
+  .appendix-intro {
+    font-size: 15px;
+  }
+  .appendix-index {
+    padding: 22px;
+  }
+  .appendix-section {
+    padding-top: 42px;
+  }
+  .activity-content {
+    padding: 22px;
+  }
+  .activity-content h3 {
+    font-size: 23px;
+  }
+  .activity-cover > img {
+    aspect-ratio: 1.3;
+  }
+  .appendix-closing {
+    padding: 25px;
+    margin-block: 35px;
+  }
+  .appendix-closing h2 {
+    font-size: 24px;
+  }
+}

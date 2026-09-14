@@ -1,11 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { navigation, site } from "@/config/site";
 import { Container } from "./Container";
 
 export function Header() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const homeAnchor = (hash: string) => (isHome ? hash : "/" + hash);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("");
   const toggle = useRef<HTMLButtonElement>(null);
@@ -48,13 +53,13 @@ export function Header() {
       document.removeEventListener("pointerdown", closeOutside);
       query.removeEventListener("change", closeOnDesktop);
     };
-  }, []);
+  }, [pathname]);
 
   return (
     <header className="site-header" ref={header}>
       <Container className="header-inner">
         <a
-          href="#home"
+          href={homeAnchor("#home")}
           className="wordmark"
           aria-label="Jaosou — home"
           onClick={() => setOpen(false)}
@@ -68,14 +73,22 @@ export function Header() {
           className={`main-navigation ${open ? "is-open" : ""}`}
         >
           {navigation.map((item) => (
-            <a
+            <Link
               key={item.href}
-              href={item.href}
-              aria-current={active === item.href ? "location" : undefined}
+              href={
+                item.href.startsWith("#") ? homeAnchor(item.href) : item.href
+              }
+              aria-current={
+                item.href === pathname
+                  ? "page"
+                  : isHome && active === item.href
+                    ? "location"
+                    : undefined
+              }
               onClick={() => setOpen(false)}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
           <a
             href={site.resume.url}
@@ -86,7 +99,7 @@ export function Header() {
             View resume <ArrowUpRight size={15} />
           </a>
         </nav>
-        <a className="header-resume" href="#contact">
+        <a className="header-resume" href={homeAnchor("#contact")}>
           Let’s connect <ArrowUpRight size={16} />
         </a>
         <button

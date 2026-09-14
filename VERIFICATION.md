@@ -40,3 +40,15 @@
 - สถานะการศึกษา/งานปัจจุบันของเจ้าของ และไฟล์ PDF ใหม่
 
 Screenshots และ trace สำหรับตรวจภายในอยู่ใน artifacts/ และ test-results/ ซึ่งไม่รวมใน Git
+
+## การเพิ่มหน้าภาคผนวก /beyond
+
+- เพิ่มงานสอน 2 รายการ กิจกรรมอื่น 4 รายการ และรูปเพิ่มเติม 5 รูปผ่าน config กลาง
+- เมนู Beyond, ลิงก์จาก Experience และ navigation กลับไปหน้า portfolio ทำงาน
+- More moments เปิด/ปิดได้ด้วย mouse และ keyboard
+- ตรวจหน้าจอ 360/390/768/1440px รูปโหลดครบ ไม่มี horizontal overflow
+- axe WCAG A/AA ไม่พบ violation ในหน้าภาคผนวกบน 390px และ 1440px
+- E2E รวม 8 ชุดผ่าน รวม regression ของหน้าหลัก
+- lint, typecheck, formatting และ production build ผ่าน
+- ตรวจ screenshot desktop/mobile แล้ว ปรับ alt ของภาพมอบรางวัลให้ตรงกับภาพจริง
+- ยังเป็น local preview ไม่มีการ deploy ในงานเพิ่มหน้านี้

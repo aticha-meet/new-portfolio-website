@@ -1,6 +1,7 @@
 import type { ImageKey } from "@/config/images";
+import { github } from "@/config/github";
 
-// Adapted from the owner's previous portfolio. No current employment or graduation is assumed.
+// Historical education from the previous portfolio; internship details are supplied by the owner.
 export const education = [
   {
     date: "Started in 2022",
@@ -16,36 +17,150 @@ export const education = [
   },
 ];
 
-export const experiences = [
+export type WorkExperience = {
+  date: string | null;
+  category: string;
+  title: string;
+  organization: string;
+  description: string | null;
+  tag: string;
+  image: ImageKey | null;
+  featured?: boolean;
+  repository?: string | null;
+  role?: string;
+  award?: boolean;
+  highlights?: string[];
+  projectTitle?: string;
+  technologies?: string[];
+};
+
+export const experiences: WorkExperience[] = [
   {
-    date: "2024",
-    category: "TEACHING & COMMUNICATION",
-    title: "Sharing what I know.",
-    organization: "11th Thailand Teaching Academy Award",
+    date: "2 June — 31 August 2025 · 3 months",
+    category: "WORK EXPERIENCE",
+    title: "Internship at Adapter",
+    organization: "Adapter",
+    projectTitle: "A CMS for the company’s main website",
     description:
-      "Led a computer theory teaching session and received a silver medal. Adapted the lesson when the internet disconnected during the competition.",
-    tag: "Silver medal",
-    image: "teaching" as ImageKey,
-  },
-  {
-    date: "2024",
-    category: "RESEARCH & BUSINESS",
-    title: "From research to the real world.",
-    organization: "Research to Market (R2M)",
-    description:
-      "Researched production processes, product costs, and business opportunities. Joined the entrepreneurship bootcamp and received a commendation award with the team.",
-    tag: "Commendation award",
-    image: "research" as ImageKey,
-  },
-  {
-    date: "2023 — 2024",
-    category: "MENTORING",
-    title: "Learning, then passing it on.",
-    organization: "Physics & Calculus · Teaching Assistant",
-    description:
-      "Helped first-year students with physics during orientation and supported peers with calculus. Later helped junior students prepare and teach their own classes.",
-    tag: "Peer learning",
+      "Built an internal CMS for Adapter in an Nx monorepo, with a Next.js frontend and an Express.js backend. The CMS lets the team add content and control which information appears on the company’s main website.",
+    tag: "Internship",
     image: null,
+    featured: true,
+    highlights: [
+      "Integrated Google OAuth 2.0 sign-in with organization access checks to reject unauthorized accounts, and added reCAPTCHA for bot protection.",
+      "Implemented pagination to limit the records returned per query and reduce query load when working with large datasets.",
+      "Configured GitHub Actions workflows for CI/CD and automated deployment.",
+      "Automated image migration from the legacy website to the new site using Python scripts and APIs.",
+    ],
+    technologies: [
+      "Nx",
+      "Next.js",
+      "Express.js",
+      "Google OAuth 2.0",
+      "reCAPTCHA",
+      "GitHub Actions",
+      "Python",
+    ],
+  },
+  {
+    date: "2026",
+    category: "PERSONAL APP · FULL-STACK & DEVOPS",
+    title: "Edu Flow",
+    organization: "A self-built education ERP",
+    role: "Full-Stack Developer & DevOps",
+    description:
+      "Built an ERP web app for exam management and monitoring student cheating. Ran the database in Docker during testing, then deployed separate services using Dockerfiles and Docker Compose. A Cloudflare container makes the app accessible to users, while OAuth 2.0 and an allowlist restrict access.",
+    tag: "Built for personal use",
+    image: "eduFlow",
+    repository: github.experiences.eduFlow,
+    technologies: ["Docker", "Docker Compose", "Cloudflare", "OAuth 2.0"],
+  },
+  {
+    date: "2026",
+    category: "PERSONAL APP · RETAIL OPERATIONS",
+    title: "Grocery Store App",
+    organization: "Built for my family’s grocery store",
+    role: "Builder & grandson of the store owner",
+    description:
+      "Created a tool to manage products, track inventory, and record sales in my family’s grocery store. QR codes and barcode scanning help retrieve the correct price and keep track of stock running low. The app is now being used to support the shop’s daily work.",
+    tag: "In use at the family store",
+    image: "groceryStore",
+    repository: github.experiences.groceryStore,
+    technologies: ["Inventory management", "Barcode & QR", "Sales tracking"],
+  },
+  {
+    date: "2026",
+    category: "PERSONAL AUTOMATION · EDUCATION",
+    title: "Google Classroom Automation",
+    organization: "Google Apps Script for my teaching workflow",
+    role: "Teacher & automation builder",
+    description:
+      "Used Google Apps Script and the Google Classroom API to manage classes and retrieve assignment data. Automated repetitive work, added assignment updates, and surfaced ungraded work with reminders to make the grading workflow easier to follow.",
+    tag: "Built for my teaching workflow",
+    image: "classroomAutomation",
+    repository: github.experiences.classroomAutomation,
+    technologies: ["Google Apps Script", "Google Classroom API", "Automation"],
+  },
+  {
+    date: "2026",
+    category: "ROBOTICS & TECHNICAL LEADERSHIP",
+    title: "Leading the code. Solving the challenge.",
+    organization: "Teaching Academy Thailand 12th · Robot",
+    role: "Lead Coder",
+    description:
+      "Led Arduino programming with a junior teammate, designing the robot’s control logic and troubleshooting software and hardware. The team earned a gold medal and finished as runner-up.",
+    tag: "Gold medal · Runner-up",
+    award: true,
+    image: "robotics12",
+    technologies: ["Arduino", "Robot control", "Technical leadership"],
+  },
+  {
+    date: "2026",
+    category: "TECHNICAL DEMONSTRATION",
+    title: "Bringing the robot to a live audience.",
+    organization: "Exhibition booth at ASEFA Co., Ltd.",
+    role: "Lead Coder & Commentator",
+    description:
+      "Demonstrated the competition robot lifting boxes like a forklift, crossing a bridge, and completing its mission. Explained the robot’s capabilities and exchanged technical knowledge with company executives.",
+    tag: "Live robot demonstration",
+    image: "asefaDemo",
+    technologies: ["Robotics", "Technical communication"],
+  },
+  {
+    date: "2025",
+    category: "POSITIONING & HARDWARE",
+    title: "Learning through low-cost positioning.",
+    organization: "GNSS Low Cost Robotic",
+    role: "Coder & Hardware",
+    description:
+      "Contributed coding and hardware work to a low-cost satellite positioning competition. Used the experience as a foundation for solving problems in later robotics competitions.",
+    tag: "Competition participant",
+    image: "gnssRobotic",
+    technologies: ["GNSS", "Hardware", "Problem solving"],
+  },
+  {
+    date: "2025",
+    category: "ROBOTICS & CONTROL",
+    title: "Making autonomous movement smoother.",
+    organization: "Teaching Academy Thailand 11th · Robot",
+    role: "Assistant Coder",
+    description:
+      "Supported the design and programming of an automatic can-gripping robot. Used line tracking and PID control to help the robot move steadily and smoothly.",
+    tag: "Autonomous robot development",
+    image: "robotics11",
+    technologies: ["Line tracking", "PID control", "Robotics"],
+  },
+  {
+    date: "2025",
+    category: "DESIGN THINKING & DEVELOPMENT",
+    title: "Connecting code with a business idea.",
+    organization: "Design Thinking Workshop · Gosoft (Thailand) Co., Ltd.",
+    role: "Coder & Presenter",
+    description:
+      "Joined a design thinking workshop and mini hackathon to model a business idea for Gosoft. Contributed coding and presentation work in a team whose members brought different specialties.",
+    tag: "Workshop & mini hackathon",
+    image: "gosoftWorkshop",
+    technologies: ["Design thinking", "Prototyping", "Presentation"],
   },
 ];
 
@@ -88,7 +203,7 @@ export const projects: Project[] = [
       "Exploring eye tracking to detect driver drowsiness and help prevent traffic accidents.",
     tags: ["Eye tracking", "Detection", "Software"],
     image: "eyeDetection",
-    href: "https://github.com/Jaosou/Eye-detection-project",
+    href: github.projects.eyeDetection,
     role: "Program design, development & testing",
   },
   {
@@ -99,7 +214,7 @@ export const projects: Project[] = [
       "A fall-detection cane that connects NodeMCU to a Telegram bot and sends a location link when a fall is detected.",
     tags: ["NodeMCU", "Telegram API", "GPS"],
     image: "smartCane",
-    href: "https://github.com/Jaosou/MiniPro-GpsTraker-XYZ",
+    href: github.projects.smartCane,
     role: "End-to-end project development",
   },
   {
@@ -110,7 +225,7 @@ export const projects: Project[] = [
       "Designed and tested a Python API to retrieve database records and display them on a webpage.",
     tags: ["Python", "REST API", "Database"],
     image: "apiLab",
-    href: "https://github.com/Jaosou/Build-and-Test-API",
+    href: github.projects.apiLab,
     role: "API design, implementation & peer support",
   },
   {
@@ -121,7 +236,7 @@ export const projects: Project[] = [
       "A Flutter app that fetches online exchange rates and makes currency conversion easy to explore.",
     tags: ["Flutter", "Dart", "API integration"],
     image: "currencyApp",
-    href: "https://github.com/Jaosou/Develop-a-currency-exchange-rate-application-with-various-functions",
+    href: github.projects.currencyApp,
     role: "End-to-end app development",
   },
   {
@@ -132,7 +247,7 @@ export const projects: Project[] = [
       "A data collection model for a computer assembly shop, from process flowcharts to a working database connection.",
     tags: ["Python", "MySQL", "Data modeling"],
     image: "smeDatabase",
-    href: "https://github.com/Jaosou/Jaosou-Database-design-model-for-small-SMEs",
+    href: github.projects.smeDatabase,
     role: "Database connectivity & programming",
   },
 ];
