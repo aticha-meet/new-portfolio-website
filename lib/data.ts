@@ -8,12 +8,14 @@ export const education = [
     name: "King Mongkut’s University of Technology Thonburi",
     detail: "Electrical Engineering · KMUTT",
     mark: "K",
+    logo: "kmuttLogo" as ImageKey | null,
   },
   {
     date: "2019 — 2022",
     name: "Princess Chulabhorn Science High School Chonburi",
     detail: "Secondary education",
     mark: "P",
+    logo: "pcshsChonburiLogo" as ImageKey | null,
   },
 ];
 
@@ -44,7 +46,7 @@ export const experiences: WorkExperience[] = [
     description:
       "Built an internal CMS for Adapter in an Nx monorepo, with a Next.js frontend and an Express.js backend. The CMS lets the team add content and control which information appears on the company’s main website.",
     tag: "Internship",
-    image: null,
+    image: "adapterCms",
     featured: true,
     highlights: [
       "Integrated Google OAuth 2.0 sign-in with organization access checks to reject unauthorized accounts, and added reCAPTCHA for bot protection.",

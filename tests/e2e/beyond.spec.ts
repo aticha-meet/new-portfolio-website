@@ -31,7 +31,7 @@ test("appendix shows activities, opens photo galleries and links back to project
     .getByRole("link", { name: "Projects", exact: true })
     .click();
   await expect(page).toHaveURL(/\/#projects$/);
-  await expect(page.locator(".project-card")).toHaveCount(12);
+  await expect(page.locator(".project-card")).toHaveCount(5);
 });
 
 test("appendix supports mobile navigation, responsive photos and accessibility", async ({

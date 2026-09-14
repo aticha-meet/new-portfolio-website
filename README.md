@@ -133,3 +133,7 @@ Projects รวม 12 ผลงาน: เพิ่ม CMS ของ Adapter, �
 Activities/Beyond เพิ่มการแข่งขันหุ่นยนต์, ASEFA และ Gosoft รวม 5 กิจกรรมผ่าน `technicalActivities` ใน `lib/activities.ts` โดยดึงเนื้อหาจาก Experience เช่นกัน รูป SVG ใช้เป็นภาพประกอบชั่วคราวพร้อมป้ายกำกับ
 
 Tech Stack แก้ที่ `skillGroups` ใน `lib/data.ts`: CI/CD, Services, Backend, Frontend, Deployment, Object-oriented programming, Mobile, Data และ Hardware & IoT
+
+## คู่มือรูปฉบับปัจจุบัน
+
+ดู [คู่มือเพิ่มและเปลี่ยนรูป](assets/images/README.md) สำหรับโครงสร้างไฟล์ใหม่ image keys ชนิดภาพ และคำสั่งพรีวิวพอร์ต 4444

@@ -4,7 +4,7 @@
  * Leave a repository null while private or awaiting company permission.
  */
 export const github = {
-  profile: "https://github.com/Jaosou",
+  profile: "https://github.com/aticha-meet",
   projects: {
     eyeDetection: "https://github.com/Jaosou/Eye-detection-project",
     smartCane: "https://github.com/Jaosou/MiniPro-GpsTraker-XYZ",

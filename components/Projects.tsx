@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   ArrowUpRight,
   Code2,
@@ -22,13 +23,14 @@ import {
   type Project,
   type ProjectCategory,
 } from "@/lib/data";
-import { images } from "@/config/images";
+import { images, getImageOptions, isDetailImage } from "@/config/images";
 import { site } from "@/config/site";
 import { Container } from "./Container";
 import { GlassBox } from "./GlassBox";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 
+const PROJECT_PREVIEW_LIMIT = 5;
 const categories = ["All projects", ...projectCategories] as const;
 const skillIcons = {
   database: Database,
@@ -49,7 +51,9 @@ function ProjectCard({ project }: { project: Project }) {
     <>
       <Image
         src={cover.src}
+        {...getImageOptions(cover)}
         alt={cover.alt}
+        className={isDetailImage(cover) ? "detail-image" : undefined}
         sizes="(max-width: 767px) 90vw, (max-width: 1200px) 45vw, 550px"
         placeholder={cover.src.blurDataURL ? "blur" : "empty"}
       />
@@ -101,6 +105,16 @@ function ProjectCard({ project }: { project: Project }) {
             <span key={tag}>{tag}</span>
           ))}
         </div>
+        {isDetailImage(cover) && (
+          <a
+            href={cover.src.src}
+            target="_blank"
+            rel="noreferrer"
+            className="text-link project-fullsize"
+          >
+            View full-size image <ArrowUpRight size={16} aria-hidden="true" />
+          </a>
+        )}
         <div className="project-footer">
           <span>{project.role}</span>
           {project.href && (
@@ -124,9 +138,11 @@ export function Projects() {
   const [filter, setFilter] = useState<ProjectCategory | "All projects">(
     "All projects",
   );
-  const visible = projects.filter(
-    (project) => filter === "All projects" || project.category === filter,
-  );
+  const visible = projects
+    .filter(
+      (project) => filter === "All projects" || project.category === filter,
+    )
+    .slice(0, PROJECT_PREVIEW_LIMIT);
 
   return (
     <section id="projects" className="section projects-section">
@@ -180,7 +196,6 @@ export function Projects() {
                 onClick={() => setFilter(category)}
               >
                 {category}
-                {category === "All projects" && <span>{projects.length}</span>}
               </button>
             ))}
           </div>
@@ -194,6 +209,12 @@ export function Projects() {
               <ProjectCard project={project} />
             </Reveal>
           ))}
+        </div>
+        <div className="projects-beyond">
+          <Link href="/beyond" className="button button-primary">
+            Explore activities on Beyond{" "}
+            <ArrowUpRight size={18} aria-hidden="true" />
+          </Link>
         </div>
       </Container>
     </section>

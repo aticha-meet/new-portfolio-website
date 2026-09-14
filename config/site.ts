@@ -15,7 +15,7 @@ export const site = {
     (process.env.VERCEL_URL ? "https://" + process.env.VERCEL_URL : ""),
   location: "Thailand",
   resume: {
-    url: "https://www.canva.com/design/DAGW-6G11Bc/ZaOR642tg_6R-aLMpz17bg/view",
+    url: "https://canva.link/resume-aticha",
     label: "View resume",
     // Set to /assets/documents/resume.pdf when a real PDF is added to public/.
     downloadUrl: null as string | null,

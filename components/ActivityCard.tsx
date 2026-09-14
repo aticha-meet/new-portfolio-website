@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
-import { images } from "@/config/images";
+import { ChevronDown, ArrowUpRight } from "lucide-react";
+import { images, getImageOptions, isDetailImage } from "@/config/images";
 import type { Activity } from "@/lib/activities";
 
 export function ActivityCard({ activity }: { activity: Activity }) {
@@ -10,9 +10,16 @@ export function ActivityCard({ activity }: { activity: Activity }) {
       id={activity.id}
       className="activity-card glass-box h-full overflow-hidden"
     >
-      <figure className="activity-cover">
+      <figure
+        className={
+          isDetailImage(cover)
+            ? "activity-cover activity-cover-detail"
+            : "activity-cover"
+        }
+      >
         <Image
           src={cover.src}
+          {...getImageOptions(cover)}
           alt={cover.alt}
           sizes="(max-width: 767px) 90vw, (max-width: 1200px) 45vw, 560px"
           placeholder={cover.src.blurDataURL ? "blur" : "empty"}
@@ -22,6 +29,16 @@ export function ActivityCard({ activity }: { activity: Activity }) {
             ? "Concept illustration · "
             : ""}
           {activity.caption}
+          {isDetailImage(cover) && (
+            <a
+              href={cover.src.src}
+              target="_blank"
+              rel="noreferrer"
+              className="text-link activity-fullsize"
+            >
+              View full-size image <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+          )}
         </figcaption>
       </figure>
       <div className="activity-content">
@@ -49,6 +66,7 @@ export function ActivityCard({ activity }: { activity: Activity }) {
                 <figure key={photo.image}>
                   <Image
                     src={images[photo.image].src}
+                    {...getImageOptions(images[photo.image])}
                     alt={images[photo.image].alt}
                     sizes="(max-width: 767px) 80vw, 500px"
                   />

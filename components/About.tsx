@@ -5,7 +5,7 @@ import {
   HeartHandshake,
   Trophy,
 } from "lucide-react";
-import { images } from "@/config/images";
+import { images, getImageOptions } from "@/config/images";
 import { education } from "@/lib/data";
 import { Container } from "./Container";
 import { GlassBox } from "./GlassBox";
@@ -29,6 +29,7 @@ export function About() {
               <div className="about-person">
                 <Image
                   src={images.profile.src}
+                  {...getImageOptions(images.profile)}
                   alt={images.profile.alt}
                   width={74}
                   height={86}
@@ -42,8 +43,8 @@ export function About() {
                 </div>
               </div>
               <p>
-                My background in Electrical Engineering at KMUTT sparked an
-                interest in how systems work — and how software can make them
+                My background in Computer Engineering Education at KMUTT sparked
+                an interest in how systems work — and how software can make them
                 work better.
               </p>
               <p>
@@ -69,7 +70,28 @@ export function About() {
               <div className="education-list">
                 {education.map((item) => (
                   <div className="education-item" key={item.name}>
-                    <span className="education-mark">{item.mark}</span>
+                    <span
+                      className={
+                        item.logo
+                          ? "education-mark education-logo"
+                          : "education-mark"
+                      }
+                    >
+                      {item.logo ? (
+                        <Image
+                          src={images[item.logo].src}
+                          {...getImageOptions(images[item.logo])}
+                          alt={images[item.logo].alt}
+                          width={52}
+                          height={60}
+                          sizes="52px"
+                        />
+                      ) : (
+                        <span aria-label={item.name + " logo placeholder"}>
+                          {item.mark}
+                        </span>
+                      )}
+                    </span>
                     <div>
                       <span className="small-label">{item.date}</span>
                       <h4>{item.name}</h4>

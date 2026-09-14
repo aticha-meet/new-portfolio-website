@@ -1950,3 +1950,34 @@ svg {
 .project-count {
   white-space: nowrap;
 }
+
+.projects-beyond {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.education-logo {
+  width: 64px;
+  height: 72px;
+  padding: 6px;
+  background: #fff;
+  border: 1px solid var(--border-soft);
+}
+.education-logo img {
+  width: 52px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.experience-story-media > img.detail-image {
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+.project-image-link img.detail-image {
+  object-fit: contain;
+  background: #f6f7f2;
+}
+.project-fullsize {
+  margin-bottom: 18px;
+}

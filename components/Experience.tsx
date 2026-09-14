@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight, Award, Code2, ImageIcon } from "lucide-react";
 import { github } from "@/config/github";
 import { experiences } from "@/lib/data";
-import { images } from "@/config/images";
+import { images, getImageOptions, isDetailImage } from "@/config/images";
 import { Container } from "./Container";
 import { GlassBox } from "./GlassBox";
 import { SectionHeading } from "./SectionHeading";
@@ -33,6 +33,7 @@ export function Experience() {
                   <span className="featured-experience-logo">
                     <Image
                       src={images.adapterLogo.src}
+                      {...getImageOptions(images.adapterLogo)}
                       alt={images.adapterLogo.alt}
                       width={146}
                       height={46}
@@ -97,7 +98,7 @@ export function Experience() {
             .map((item) => {
               const photo = item.image ? images[item.image] : null;
               const isPlaceholder =
-                !photo || ("placeholder" in photo && photo.placeholder);
+                !photo || ("placeholder" in photo && photo.placeholder) as boolean;
               return (
                 <Reveal key={item.organization}>
                   <article className="experience-story-row">
@@ -147,7 +148,11 @@ export function Experience() {
                       {photo ? (
                         <Image
                           src={photo.src}
+                          {...getImageOptions(photo)}
                           alt={photo.alt}
+                          className={
+                            isDetailImage(photo) ? "detail-image" : undefined
+                          }
                           sizes="(max-width: 767px) 85vw, (max-width: 1100px) 40vw, 480px"
                         />
                       ) : (
@@ -165,6 +170,17 @@ export function Experience() {
                             : "A CLOSER LOOK"}
                         </span>
                         <strong>{item.organization}</strong>
+                        {photo && isDetailImage(photo) && (
+                          <a
+                            href={photo.src.src}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-link"
+                          >
+                            View full-size image{" "}
+                            <ArrowUpRight size={16} aria-hidden="true" />
+                          </a>
+                        )}
                         {isPlaceholder && (
                           <span className="experience-media-note">
                             Illustration · project photos to follow

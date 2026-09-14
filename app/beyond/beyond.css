@@ -207,3 +207,13 @@
     font-size: 24px;
   }
 }
+
+.activity-cover.activity-cover-detail > img {
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+.activity-fullsize {
+  display: flex;
+  margin-top: 10px;
+}

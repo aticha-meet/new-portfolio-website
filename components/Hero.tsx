@@ -7,7 +7,7 @@ import {
   MapPin,
 } from "lucide-react";
 import { Github, Linkedin } from "./BrandIcons";
-import { images } from "@/config/images";
+import { images, getImageOptions } from "@/config/images";
 import { site } from "@/config/site";
 import { ButtonLink } from "./ButtonLink";
 import { Container } from "./Container";
@@ -82,6 +82,7 @@ export function Hero() {
               <div className="portrait-image">
                 <Image
                   src={images.profile.src}
+                  {...getImageOptions(images.profile)}
                   alt={images.profile.alt}
                   sizes="(max-width: 767px) 80vw, 380px"
                   loading="eager"
